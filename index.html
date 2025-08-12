@@ -116,7 +116,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
  --choice-incorrecto: #e5281c;
   --texto-oscuro: #333333;
   --texto-claro: #ffffff;
-  --fondo-pagina: #f5f5f7; /* Un gris muy claro como en la web */
+  --fondo-pagina: #f5f5f7; 
   --fondo-contenido: #ffffff;
   --borde-color: #e0e0e0;
   --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -128,6 +128,13 @@ body {
   color: var(--texto-oscuro);
   font-family: 'Montserrat', sans-serif; /* ¡LA FUENTE OFICIAL! */
   margin: 0;
+  background-image: url("https://i.postimg.cc/YSF7RVZx/fondo.jpg"); /* Cambia esta URL */
+  background-size: auto;       /* Ajusta la imagen para cubrir toda la pantalla */
+  background-position: right;  /* Centra la imagen */
+  background-repeat: repeat; /* Evita que se repita */
+  background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+}
+
 }
 
 #sidebar {
@@ -273,9 +280,7 @@ h1, h2 {
     height: auto;
     aspect-ratio: 16 / 9; /* Mantiene la proporción del video (ajusta si es necesario) */
   }
-# #ui-bar-saves, #ui-bar-restart {
-  display: none;
-}
+
 .video-container {
   position: relative;
   padding-bottom: 56.25%; /* Relación 16:9 */
@@ -290,7 +295,145 @@ h1, h2 {
   left: 0;
   width: 100%;
   height: 100%;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">Config.history.controls = false; //Quita los botones de adelante/atrás</script><tw-passagedata pid="1" name="Escenario_U2_1" tags="" position="325,175" size="100,100">&lt;h2&gt;Escenario 1: ¿Quién conforma el Comité de Ética?&lt;/h2&gt;
+}
+/* Reajusta el área de contenido */
+#story {
+  margin: 0 auto !important;
+  max-width: 100% !important;
+  width: 90% !important;
+  padding: 1em;
+}
+
+/* Opcional: mejora la legibilidad del texto */
+body {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+#ui-bar {
+  display: none !important;
+}
+
+
+        .top-bar { 
+            background-color: #9d19be; 
+            color: white; 
+            padding: 15px; 
+            font-size: 22px; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            z-index: 100; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+        }
+        .content-area { 
+            margin-top: 120px; 
+            min-height: 70vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+        }
+        h1 { 
+            color: #17852d; 
+        }
+        #topic-form { 
+            display: flex; 
+            gap: 10px; 
+            max-width: 600px; 
+            margin: 30px auto; 
+        }
+        #topic-input { 
+            flex-grow: 1; 
+            padding: 14px; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            font-size: 16px; 
+        }
+        #topic-input:focus { 
+            outline: none; 
+            border-color: #17852d; 
+            box-shadow: 0 0 0 3px rgba(23, 133, 45, 0.2); 
+        }
+        button { 
+            padding: 14px 22px; 
+            background-color: #17852d; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            transition: background-color 0.2s; 
+        }
+
+        button:hover { background-color: #9d19be; }
+        .loading-spinner { 
+            border: 5px solid #f3f3f3; 
+            border-top: 5px solid #17852d; 
+            border-radius: 50%; 
+            width: 40px; 
+            height: 40px; 
+            animation: spin 1s linear infinite; 
+            margin: 40px auto; 
+            display: none; 
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .error-message { color: #d93025; margin-top: 20px; font-weight: 500; }
+
+        /* --- ESTILOS MAPA MENTAL (Sin cambios) --- */
+        #diagram-container { margin-top: 30px; padding: 20px 0; opacity: 0; transform: scale(0.95); transition: opacity 0.6s ease, transform 0.6s ease; min-height: 600px; width: 100%; display: flex; align-items: center; justify-content: center; }
+        #diagram-container.visible { opacity: 1; transform: scale(1); }
+        .mind-map-dinamico { position: relative; width: 600px; height: 600px; }
+        .mind-map-center-dinamico { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 180px; height: 180px; background-color: #17852d; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; box-sizing: border-box; box-shadow: 0 8px 25px rgba(23, 133, 45, 0.4); z-index: 10; word-break: break-word; }
+        .mind-map-node-dinamico { position: absolute; background-color: white; border-bottom-width: 4px; border-bottom-style: solid; border-radius: 12px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); width: 220px; text-align: left; z-index: 5; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; transform: translate(-50%, -50%) scale(1); }
+        .mind-map-node-dinamico:hover { transform: translate(-50%, -50%) scale(1.05); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+        .mind-map-node-dinamico h4 { margin-top: 0; margin-bottom: 8px; transition: color 0.3s ease; }
+        .mind-map-node-dinamico p { font-size: 14px; line-height: 1.5; margin: 0; color: #5f6368; text-align: justify; }
+        .connection-line { position: absolute; background-color: #d1d1d1; height: 2px; z-index: 1; transform-origin: left center; transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1); width: 0; }
+
+        /* --- ESTILOS MODAL (ACTUALIZADO) --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); display: none; align-items: center; justify-content: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay.visible { display: flex; opacity: 1; }
+        .modal-content { background-color: white; border-radius: 12px; width: 90%; max-width: 600px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); transform: scale(0.9); transition: transform 0.3s ease; display: flex; flex-direction: column; }
+        .modal-overlay.visible .modal-content { transform: scale(1); }
+        .modal-header { padding: 18px 25px; border-top-left-radius: 12px; border-top-right-radius: 12px; color: white; font-size: 20px; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.3s ease; }
+        .modal-body { padding: 25px; font-size: 16px; line-height: 1.7; text-align: justify; max-height: 60vh; overflow-y: auto; transition: opacity 0.2s ease-in-out; }
+        /* (NUEVO) Clase para la transición de texto */
+        .modal-body.fading { opacity: 0; }
+        .modal-close-btn { background: none; border: none; color: white; font-size: 28px; cursor: pointer; line-height: 1; }
+        
+        /* (NUEVO) Estilos para el pie de página y los botones de navegación */
+        .modal-footer {
+            padding: 10px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+        }
+        .nav-btn {
+            background-color: #f0f0f0;
+            border: none;
+            color: #555;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .nav-btn:hover {
+            background-color: #e0e0e0;
+            color: #111;
+        }
+</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Escenario_U2_1" tags="" position="325,175" size="100,100">&lt;div class=&quot;inap-header&quot;&gt;
+  &lt;img src=&quot;https://i.postimg.cc/w1bWH32j/INAP-Logo-2020-M.png&quot; alt=&quot;Logo del INAP&quot;&gt;
+  &lt;img src=&quot;https://i.postimg.cc/0yYLKfr9/Logo-70-anos-a-color-2.png&quot; alt=&quot;Logo 65 Aniversario INAP&quot;&gt;
+&lt;/div&gt;
+&lt;h2&gt;Escenario 1: ¿Quién conforma el Comité de Ética?&lt;/h2&gt;
 &lt;div class=&quot;scenario-box&quot;&gt;
   &lt;p&gt;Estás liderando el primer paso: &lt;strong&gt;constituir el Comité de Ética&lt;/strong&gt;. Tu superior te sugiere que, para ser más eficientes, el comité debería estar formado únicamente por los directores de área, ya que ellos conocen mejor la operación y pueden tomar decisiones rápidas. &lt;strong&gt;¿Qué haces?&lt;/strong&gt;&lt;/p&gt;
   
@@ -310,7 +453,11 @@ h1, h2 {
   [[Aceptas la sugerencia. La eficiencia es clave y los directores tienen la autoridad para asegurar que el código se cumpla.|Feedback_U2_1_Incorrecto]]
   [[Propones una tercera vía: contratar a consultores externos especializados en ética para que ellos formen el comité y redacten el código, garantizando imparcialidad.|Feedback_U2_1_Incorrecto]]
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="2" name="Escenario_U2_2" tags="" position="650,175" size="100,100">&lt;h2&gt;Escenario 2: Analizando el Pasado&lt;/h2&gt;
+</tw-passagedata><tw-passagedata pid="2" name="Escenario_U2_2" tags="" position="650,175" size="100,100">&lt;div class=&quot;inap-header&quot;&gt;
+  &lt;img src=&quot;https://i.postimg.cc/w1bWH32j/INAP-Logo-2020-M.png&quot; alt=&quot;Logo del INAP&quot;&gt;
+  &lt;img src=&quot;https://i.postimg.cc/0yYLKfr9/Logo-70-anos-a-color-2.png&quot; alt=&quot;Logo 65 Aniversario INAP&quot;&gt;
+&lt;/div&gt;
+&lt;h2&gt;Escenario 2: Analizando el Pasado&lt;/h2&gt;
 &lt;div class=&quot;scenario-box&quot;&gt;
 &lt;p&gt;Durante una sesión del Comité, se propone analizar casos reales de conflictos de interés y conductas riesgosas que han ocurrido en la institución. Un miembro argumenta que eso es &quot;sacar los trapos sucios&quot; y que el código debería enfocarse solo en valores positivos y aspiracionales, no en problemas pasados. &lt;strong&gt;¿Cuál es tu postura?&lt;/strong&gt;&lt;/p&gt;
 
@@ -324,7 +471,11 @@ h1, h2 {
 [[Defiendes la necesidad de analizar las conductas riesgosas reales. Argumentas que un código eficaz debe dar respuesta a los problemas y dilemas éticos que los empleados enfrentan en su día a día.|Feedback_U2_2_Correcto]]
 [[Estás de acuerdo con tu colega. Es mejor crear un documento positivo y motivador que no genere conflictos internos al recordar errores del pasado.|Feedback_U2_2_Incorrecto]]
 [[Para evitar discusiones, decides usar el Código de Conducta de otra dependencia exitosa y adaptarlo ligeramente, en lugar de analizar sus propios problemas.|Feedback_U2_2_Incorrecto]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="3" name="Escenario_U2_3" tags="" position="950,175" size="100,100">&lt;h2&gt;Escenario 3: La Redacción del Código&lt;/h2&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="3" name="Escenario_U2_3" tags="" position="950,175" size="100,100">&lt;div class=&quot;inap-header&quot;&gt;
+  &lt;img src=&quot;https://i.postimg.cc/w1bWH32j/INAP-Logo-2020-M.png&quot; alt=&quot;Logo del INAP&quot;&gt;
+  &lt;img src=&quot;https://i.postimg.cc/0yYLKfr9/Logo-70-anos-a-color-2.png&quot; alt=&quot;Logo 65 Aniversario INAP&quot;&gt;
+&lt;/div&gt;
+&lt;h2&gt;Escenario 3: La Redacción del Código&lt;/h2&gt;
 &lt;div class=&quot;scenario-box&quot;&gt;
 &lt;p&gt;El primer borrador del Código de Conducta está listo. Es un documento de 60 páginas, lleno de terminología jurídica compleja para que sea &quot;legalmente robusto&quot;. El equipo legal insiste en que así se protege a la institución. &lt;strong&gt;¿Qué opinas del borrador?&lt;/strong&gt;&lt;/p&gt;
 
@@ -337,7 +488,11 @@ h1, h2 {
 [[Pides que se reescriba. El código debe tener un lenguaje simple, conciso y entendible para todos los servidores públicos, no solo para los abogados. Su objetivo es orientar la conducta, no ser un tratado legal.|Feedback_U2_3_Correcto]]
 [[Apruebas el borrador. La robustez legal es lo más importante para evitar problemas a futuro y le da un carácter más serio al documento.|Feedback_U2_3_Incorrecto]]
 [[Decides mantener el documento denso, pero propones crear un video animado de 5 minutos que resuma los puntos clave para el resto del personal.|Feedback_U2_3_Incorrecto]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="4" name="Escenario_U2_4" tags="" position="1300,175" size="100,100">&lt;h2&gt;Escenario 4: La Difusión del Código&lt;/h2&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="4" name="Escenario_U2_4" tags="" position="1300,175" size="100,100">&lt;div class=&quot;inap-header&quot;&gt;
+  &lt;img src=&quot;https://i.postimg.cc/w1bWH32j/INAP-Logo-2020-M.png&quot; alt=&quot;Logo del INAP&quot;&gt;
+  &lt;img src=&quot;https://i.postimg.cc/0yYLKfr9/Logo-70-anos-a-color-2.png&quot; alt=&quot;Logo 65 Aniversario INAP&quot;&gt;
+&lt;/div&gt;
+&lt;h2&gt;Escenario 4: La Difusión del Código&lt;/h2&gt;
 &lt;div class=&quot;scenario-box&quot;&gt;
 &lt;p&gt;El Código de Conducta final ha sido firmado por el titular de la dependencia. Ahora es momento de darlo a conocer a todo el personal. ¿Cuál es la estrategia de implementación más efectiva?&lt;/p&gt;
 
@@ -350,7 +505,11 @@ h1, h2 {
 [[Organizar un evento de lanzamiento formal, seguido de un programa de talleres participativos por área para discutir el contenido del código y resolver dilemas prácticos.|Feedback_U2_4_Correcto]]
 [[Enviar un correo electrónico a todos los empleados con el Código de Conducta en PDF como archivo adjunto y publicarlo en la página web de la institución.|Feedback_U2_4_Incorrecto]]
 [[Colocar carteles en las oficinas con los valores principales del código y solicitar a cada jefe que lo explique a su equipo en una de sus reuniones semanales.|Feedback_U2_4_Incorrecto]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Escenario_U2_5" tags="" position="1650,175" size="100,100">&lt;h2&gt;Escenario 5: La Primera Actualización&lt;/h2&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Escenario_U2_5" tags="" position="1650,175" size="100,100">&lt;div class=&quot;inap-header&quot;&gt;
+  &lt;img src=&quot;https://i.postimg.cc/w1bWH32j/INAP-Logo-2020-M.png&quot; alt=&quot;Logo del INAP&quot;&gt;
+  &lt;img src=&quot;https://i.postimg.cc/0yYLKfr9/Logo-70-anos-a-color-2.png&quot; alt=&quot;Logo 65 Aniversario INAP&quot;&gt;
+&lt;/div&gt;
+&lt;h2&gt;Escenario 5: La Primera Actualización&lt;/h2&gt;
 &lt;div class=&quot;scenario-box&quot;&gt;
 &lt;p&gt;Ha pasado un año desde que se implementó el Código de Conducta. Como líder del Comité de Ética, ¿qué acción es prioritaria ahora?&lt;/p&gt;
 
@@ -435,7 +594,12 @@ h1, h2 {
 
 &lt;div class=&quot;choices-as-buttons&quot;&gt;
  [[Comenzar el primer escenario|Escenario_U2_1]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="17" name="Retroalimentacion_U2" tags="" position="1950,150" size="100,100">&lt;h1 class=&quot;center&quot;&gt;Resultados del Simulador (Unidad 2)&lt;/h1&gt;
+  [[Prueba IA|Prueba]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="17" name="Retroalimentacion_U2" tags="" position="1950,150" size="100,100">&lt;div class=&quot;inap-header&quot;&gt;
+  &lt;img src=&quot;https://i.postimg.cc/w1bWH32j/INAP-Logo-2020-M.png&quot; alt=&quot;Logo del INAP&quot;&gt;
+  &lt;img src=&quot;https://i.postimg.cc/0yYLKfr9/Logo-70-anos-a-color-2.png&quot; alt=&quot;Logo 65 Aniversario INAP&quot;&gt;
+&lt;/div&gt;
+&lt;h1 class=&quot;center&quot;&gt;Resultados del Simulador (Unidad 2)&lt;/h1&gt;
 
 &lt;div class=&quot;scenario-box&quot;&gt;
 &lt;p&gt;Has finalizado el simulador sobre la creación de un Código de Conducta. Como has visto, no se trata solo de escribir un documento, sino de liderar un proceso de cambio cultural.&lt;/p&gt;
@@ -495,6 +659,231 @@ Un Código de Conducta exitoso es aquel que vive en las decisiones diarias de lo
 
 &lt;div class=&quot;choices-as-buttons&quot; background-color: 5526b4 &gt;
 [[Volver a intentar|Inicio]]
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="18" name="Prueba" tags="" position="100,375" size="100,100">&lt;div class=&quot;top-bar&quot;&gt;Aplicación impulsada con Gemini&lt;/div&gt;
+    &lt;main&gt;
+        &lt;div class=&quot;content-area&quot;&gt;
+            &lt;h1&gt;Generador de Mapas Mentales con IA&lt;/h1&gt;
+            &lt;p&gt;Introduce un tema y Gemini creará un resumen visual para ti.&lt;/p&gt;
+            &lt;form id=&quot;topic-form&quot;&gt;
+                &lt;input type=&quot;text&quot; id=&quot;topic-input&quot; placeholder=&quot;Ej: El Renacimiento&quot; required /&gt;
+                &lt;button type=&quot;submit&quot;&gt;Generar Mapa&lt;/button&gt;
+            &lt;/form&gt;
+            &lt;div class=&quot;loading-spinner&quot;&gt;&lt;/div&gt;
+            &lt;p class=&quot;error-message&quot;&gt;&lt;/p&gt;
+            &lt;div id=&quot;diagram-container&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/main&gt;
+    
+    &lt;!-- HTML DEL MODAL (ACTUALIZADO CON FOOTER) --&gt;
+    &lt;div id=&quot;info-modal&quot; class=&quot;modal-overlay&quot;&gt;
+        &lt;div class=&quot;modal-content&quot;&gt;
+            &lt;div id=&quot;modal-header&quot; class=&quot;modal-header&quot;&gt;
+                &lt;h3 id=&quot;modal-title&quot;&gt;&lt;/h3&gt;
+                &lt;button id=&quot;modal-close-btn&quot; class=&quot;modal-close-btn&quot;&gt;×&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div id=&quot;modal-body&quot; class=&quot;modal-body&quot;&gt;
+                &lt;p id=&quot;modal-text&quot;&gt;&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;!-- (NUEVO) Footer con botones de navegación --&gt;
+            &lt;div class=&quot;modal-footer&quot;&gt;
+                &lt;button id=&quot;modal-prev-btn&quot; class=&quot;nav-btn&quot;&gt;←&lt;/button&gt;
+                &lt;button id=&quot;modal-next-btn&quot; class=&quot;nav-btn&quot;&gt;→&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;script&gt;
+    // --- CONFIGURACIÓN ---
+    const API_KEY = &quot;AIzaSyCL-xgmvlszA64p7Unk7iRZ8IdcSricRHU&quot;; // ⚠️ No usar esto en producción
+    const API_URL = &quot;https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=&quot; + API_KEY;
+
+    // --- REFERENCIAS AL DOM ---
+    const form = document.getElementById(&#39;topic-form&#39;);
+    const input = document.getElementById(&#39;topic-input&#39;);
+    const diagramContainer = document.getElementById(&#39;diagram-container&#39;);
+    const loadingSpinner = document.querySelector(&#39;.loading-spinner&#39;);
+    const errorMessage = document.querySelector(&#39;.error-message&#39;);
+    
+    // --- REFERENCIAS AL MODAL ---
+    const modalOverlay = document.getElementById(&#39;info-modal&#39;);
+    const modalHeader = document.getElementById(&#39;modal-header&#39;);
+    const modalTitle = document.getElementById(&#39;modal-title&#39;);
+    const modalBody = document.getElementById(&#39;modal-body&#39;); // Referencia al body del modal
+    const modalText = document.getElementById(&#39;modal-text&#39;);
+    const modalCloseBtn = document.getElementById(&#39;modal-close-btn&#39;);
+    const modalPrevBtn = document.getElementById(&#39;modal-prev-btn&#39;); // (NUEVO)
+    const modalNextBtn = document.getElementById(&#39;modal-next-btn&#39;); // (NUEVO)
+
+    // --- (NUEVO) VARIABLES DE ESTADO GLOBAL ---
+    let allNodesData = [];
+    let currentNodeIndex = 0;
+
+    // --- MANEJADOR DE EVENTOS ---
+    form.addEventListener(&#39;submit&#39;, async (event) =&gt; {
+      event.preventDefault();
+      const topic = input.value.trim();
+      if (!topic) return;
+
+      loadingSpinner.style.display = &#39;block&#39;;
+      diagramContainer.innerHTML = &#39;&#39;;
+      diagramContainer.classList.remove(&#39;visible&#39;);
+      errorMessage.textContent = &#39;&#39;;
+      allNodesData = []; // Limpiar datos anteriores
+
+      const prompt = `
+        Genera un mapa mental sobre el tema: &quot;${topic}&quot;.
+        Tu respuesta DEBE ser únicamente un objeto JSON válido, sin texto adicional, explicaciones o los marcadores \`\`\`json.
+        El JSON debe tener una clave principal &quot;nodos&quot;, que es un array de 4 a 6 objetos, intenta que estos objetos sean relevantes y tengan un orden o bien un flujo.
+        Cada objeto debe tener exactamente estas CUATRO claves:
+        1. &quot;titulo&quot;: Un título corto y atractivo con un emoji relevante.
+        2. &quot;contenido&quot;: Una explicación concisa de no más de 40 palabras.
+        3. &quot;informacionAdicional&quot;: Un texto más detallado y profundo de entre 80 y 120 palabras.
+        4. &quot;color&quot;: Un código de color hexadecimal (ej: &quot;#4285F4&quot;) que represente el concepto.
+      `;
+
+      try {
+        const response = await fetch(API_URL, {
+          method: &quot;POST&quot;,
+          headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
+          body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+        });
+        
+        if (!response.ok) throw new Error(`Error HTTP ${response.status}`);
+        const data = await response.json();
+        const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!rawText) throw new Error(&quot;La IA no generó una respuesta de texto.&quot;);
+        
+        const cleanedText = extractJson(rawText);
+        const jsonData = JSON.parse(cleanedText);
+        
+        // --- (ACTUALIZADO) Guardar datos en la variable de estado ---
+        if (jsonData.nodos &amp;&amp; Array.isArray(jsonData.nodos)) {
+            allNodesData = jsonData.nodos;
+            renderMindMapDinamico(topic);
+        } else {
+            throw new Error(&quot;La respuesta de la IA no contiene un array de &#39;nodos&#39; válido.&quot;);
+        }
+
+      } catch (err) {
+        errorMessage.textContent = `Ha ocurrido un error: ${err.message}. Inténtalo de nuevo.`;
+        console.error(err);
+      } finally {
+        loadingSpinner.style.display = &#39;none&#39;;
+      }
+    });
+    
+    // --- EVENT LISTENERS MODAL ---
+    modalCloseBtn.addEventListener(&#39;click&#39;, hideModal);
+    modalOverlay.addEventListener(&#39;click&#39;, (event) =&gt; {
+      if (event.target === modalOverlay) hideModal();
+    });
+    // (NUEVO) Event listeners para los botones de navegación
+    modalPrevBtn.addEventListener(&#39;click&#39;, showPreviousNode);
+    modalNextBtn.addEventListener(&#39;click&#39;, showNextNode);
+
+
+    function extractJson(str) {
+      const match = str.match(/\{[\s\S]*\}/);
+      return match ? match[0] : str;
+    }
+
+    // --- (NUEVO) LÓGICA DE NAVEGACIÓN ---
+    function showPreviousNode() {
+      // Calcula el nuevo índice, asegurando que si es 0, pase al último (loop)
+      currentNodeIndex = (currentNodeIndex - 1 + allNodesData.length) % allNodesData.length;
+      updateModalContent(currentNodeIndex);
+    }
+    function showNextNode() {
+      // Calcula el nuevo índice, asegurando que si es el último, pase al primero (loop)
+      currentNodeIndex = (currentNodeIndex + 1) % allNodesData.length;
+      updateModalContent(currentNodeIndex);
+    }
+
+    // --- (ACTUALIZADO) FUNCIONES PARA MANEJAR EL MODAL ---
+    function showModal(index) {
+      currentNodeIndex = index; // Establece el índice actual
+      updateModalContent(index); // Actualiza el contenido
+      modalOverlay.classList.add(&#39;visible&#39;); // Muestra el modal
+    }
+    function hideModal() {
+      modalOverlay.classList.remove(&#39;visible&#39;);
+    }
+
+    // (NUEVO) Función central para actualizar el contenido del modal
+    function updateModalContent(index) {
+        const nodeData = allNodesData[index];
+        if (!nodeData) return;
+
+        // Añadimos una clase para activar la transición de fade-out
+        modalBody.classList.add(&#39;fading&#39;);
+
+        // Esperamos a que termine la transición para cambiar el contenido
+        setTimeout(() =&gt; {
+            modalTitle.textContent = nodeData.titulo;
+            modalText.textContent = nodeData.informacionAdicional;
+            modalHeader.style.backgroundColor = nodeData.color;
+            // Quitamos la clase para que el contenido aparezca (fade-in)
+            modalBody.classList.remove(&#39;fading&#39;);
+        }, 200); // Este tiempo debe coincidir con la transición en el CSS
+    }
+    
+    // --- FUNCIÓN DE RENDERIZADO (ACTUALIZADA) ---
+    function renderMindMapDinamico(topic) {
+        diagramContainer.innerHTML = &#39;&#39;; // Limpiar antes de renderizar
+
+        const mapContainer = document.createElement(&#39;div&#39;);
+        mapContainer.className = &#39;mind-map-dinamico&#39;;
+        
+        const centerNode = document.createElement(&#39;div&#39;);
+        centerNode.className = &#39;mind-map-center-dinamico&#39;;
+        centerNode.innerHTML = `&lt;h2&gt;${topic}&lt;/h2&gt;`;
+        mapContainer.appendChild(centerNode);
+
+        const numNodes = allNodesData.length;
+        const radius = 250;
+        const centerX = 300;
+        const centerY = 300;
+
+        allNodesData.forEach((nodeData, index) =&gt; {
+            if(!nodeData.titulo || !nodeData.contenido || !nodeData.informacionAdicional || !nodeData.color) {
+              console.warn(&quot;Un nodo recibido no tiene el formato esperado:&quot;, nodeData);
+              return;
+            }
+
+            const angle = (index / numNodes) * 2 * Math.PI;
+            const x = centerX + radius * Math.cos(angle);
+            const y = centerY + radius * Math.sin(angle);
+            
+            const nodeElement = document.createElement(&#39;div&#39;);
+            nodeElement.className = &#39;mind-map-node-dinamico&#39;;
+            nodeElement.style.left = `${x}px`;
+            nodeElement.style.top = `${y}px`;
+            nodeElement.style.borderBottomColor = nodeData.color;
+            nodeElement.innerHTML = `&lt;h4 style=&quot;color: ${nodeData.color};&quot;&gt;${nodeData.titulo}&lt;/h4&gt;&lt;p&gt;${nodeData.contenido}&lt;/p&gt;`;
+
+            // (ACTUALIZADO) El click ahora llama a showModal con el índice
+            nodeElement.addEventListener(&#39;click&#39;, () =&gt; showModal(index));
+            
+            mapContainer.appendChild(nodeElement);
+
+            const line = document.createElement(&#39;div&#39;);
+            line.className = &#39;connection-line&#39;;
+            line.style.left = `${centerX}px`;
+            line.style.top = `${centerY}px`;
+            const rotationAngle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
+            line.style.transform = `rotate(${rotationAngle}deg)`;
+
+            setTimeout(() =&gt; { line.style.width = `${radius - 30}px`; }, 100 + index * 100);
+
+            mapContainer.appendChild(line);
+        });
+        
+        diagramContainer.appendChild(mapContainer);
+        setTimeout(() =&gt; diagramContainer.classList.add(&#39;visible&#39;), 10);
+    }
+&lt;/script&gt;
+&lt;div class=&quot;choices-as-buttons&quot; background-color: 5526b4 &gt;
+[[Inicio|Inicio]]
 &lt;/div&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
